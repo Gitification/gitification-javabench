@@ -24,5 +24,15 @@ benchs.add(new CreateEventBenchmark(100));
 BenchmarkExecutor.execute(benchs);
 ```
 
+### Verbose log
+In file `log4j.properties`, change the following line
+```java
+log4j.rootLogger=INFO, stdout
+```
+with 
+```java
+log4j.rootLogger=DEBUG, stdout
+```
+
 
 
