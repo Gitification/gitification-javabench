@@ -16,12 +16,14 @@ public abstract class Benchmark implements CallableBenchmark{
 		out = new PrintWriter(new FileWriter(f));
 	}
 	
-	public void callBenchmark() {
+	public boolean callBenchmark() {
 		try{
 			benchmark();
+			return true;
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 	

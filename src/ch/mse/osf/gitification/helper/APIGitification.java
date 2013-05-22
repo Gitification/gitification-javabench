@@ -48,6 +48,11 @@ public class APIGitification {
 		String responseBody = HTTPRequester.get(baseURL + "applications");
 		log.debug(responseBody);
 	}
+	
+	public static void getPing() throws ClientProtocolException, IOException {
+		String responseBody = HTTPRequester.get(baseURL + "ping");
+		log.debug(responseBody);
+	}
 
 	public static void getUser(Application app, User user)
 			throws ClientProtocolException, IOException {

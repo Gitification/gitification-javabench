@@ -11,7 +11,7 @@ public class BenchmarkExecutor {
 	public static void execute(List<Benchmark> benchmarks) {
 		for(Benchmark benchmark : benchmarks){
 			log.info("Start benchmark: " + benchmark.getClass().getName());
-			benchmark.callBenchmark();
+			if(!benchmark.callBenchmark()) continue;
 			log.info("End benchmark: " + benchmark.getClass().getName());
 		}
 		
