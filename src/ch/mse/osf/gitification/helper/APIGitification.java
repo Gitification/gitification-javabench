@@ -68,6 +68,13 @@ public class APIGitification {
 		List<Badge> badges = mapper.readValue(mapper.readTree(responseBody).path("badges_list").traverse(), new TypeReference<List<Badge>>() {});
 		return badges;
 	}
+	
+	public static void getFindLeaderBoard(Application app) throws ClientProtocolException, IOException{
+		log.debug("**** GET FINDLEADERBOARD ******");
+		String responseBody = HTTPRequester.get(baseURL + "applications/"
+				+ app.getApplication_id() + "/leaderboard");
+		log.debug(responseBody);
+	}
 
 
 	public static User postUser(Application app, User user) throws ClientProtocolException,

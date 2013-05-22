@@ -12,14 +12,26 @@ import ch.mse.osf.gitification.model.Badge;
 import ch.mse.osf.gitification.model.EventType;
 import ch.mse.osf.gitification.model.User;
 
-public class CreateEventBenchmark extends Benchmark {
+public class UserBadgesBenchmark extends Benchmark {
 
-	private int nbEvents = 0;
+	private int nbBadge = 0;
 
-
-	public CreateEventBenchmark(int nbEvents) throws IOException {
+	public UserBadgesBenchmark(int nbBadges)
+			throws IOException {
 		super();
-		this.nbEvents = nbEvents;	
+		this.nbBadge = nbBadges;
+	}
+
+	public void attributeBadge(Application app, User user)
+			throws ClientProtocolException, IOException {
+		EventType eventType = APIGitification.postEventType(app,
+				DummyFactory.eventType());
+
+		Badge badge = APIGitification.postBadge(app, DummyFactory.badge());
+
+		APIGitification.postRule(app, DummyFactory.rule(badge, eventType, 1));
+
+		APIGitification.postEvent(app, DummyFactory.event(user, eventType));
 	}
 
 	@Override
@@ -28,23 +40,17 @@ public class CreateEventBenchmark extends Benchmark {
 		Application app = APIGitification.postApplication(DummyFactory
 				.application());
 		User user = APIGitification.postUser(app, DummyFactory.user());
-
-		EventType eventType = APIGitification.postEventType(app,
-				DummyFactory.eventType());
-
-		Badge badge = APIGitification.postBadge(app, DummyFactory.badge());
-
-		APIGitification.postRule(app, DummyFactory.rule(badge, eventType, 6));
-
+		
 		long start, end;
-		for (int i = 0; i < nbEvents; i++) {
+		for (int i = 0; i < nbBadge; i++) {
+			attributeBadge(app, user);
 			start = System.nanoTime();
-			APIGitification.postEvent(app, DummyFactory.event(user, eventType));
+			APIGitification.getUserBadges(app, user);
 			end = System.nanoTime();
 			out.println(i + "," + (end - start));
 			out.flush();
 		}
-		
+
 		out.close();
 	}
 
