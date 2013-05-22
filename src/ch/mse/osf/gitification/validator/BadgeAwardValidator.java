@@ -11,9 +11,7 @@ import ch.mse.osf.gitification.helper.APIGitification;
 import ch.mse.osf.gitification.helper.DummyFactory;
 import ch.mse.osf.gitification.model.Application;
 import ch.mse.osf.gitification.model.Badge;
-import ch.mse.osf.gitification.model.Event;
 import ch.mse.osf.gitification.model.EventType;
-import ch.mse.osf.gitification.model.Rule;
 import ch.mse.osf.gitification.model.User;
 
 public class BadgeAwardValidator {
@@ -43,33 +41,33 @@ public class BadgeAwardValidator {
 		EventType eventType = APIGitification.postEventType(app,
 				DummyFactory.eventType());
 		Badge badge = APIGitification.postBadge(app, DummyFactory.badge());
-		Rule rule = APIGitification.postRule(app,
+		APIGitification.postRule(app,
 				DummyFactory.rule(badge, eventType, 6));
 
 		Badge badge2 = APIGitification.postBadge(app, DummyFactory.badge());
-		Rule rule2 = APIGitification.postRule(app,
+		APIGitification.postRule(app,
 				DummyFactory.rule(badge2, eventType, 7));
 
 		Badge badge3 = APIGitification.postBadge(app, DummyFactory.badge());
 		EventType eventType2 = APIGitification.postEventType(app,
 				DummyFactory.eventType());
-		Rule rule3 = APIGitification.postRule(app,
+		APIGitification.postRule(app,
 				DummyFactory.rule(badge3, eventType2, 10));
 
 		Badge badge4 = APIGitification.postBadge(app, DummyFactory.badge());
 		EventType eventType4 = APIGitification.postEventType(app,
 				DummyFactory.eventType());
-		Rule rule4 = APIGitification.postRule(app,
+		APIGitification.postRule(app,
 				DummyFactory.rule(badge4, eventType4, 10));
 
 		for (int i = 0; i < 6; i++) {
-			Event event = APIGitification.postEvent(app,
+			APIGitification.postEvent(app,
 					DummyFactory.event(user, eventType));
-			Event event2 = APIGitification.postEvent(app,
+			APIGitification.postEvent(app,
 					DummyFactory.event(user, eventType2));
 		}
 		for (int i = 0; i < 10; i++) {
-			Event event = APIGitification.postEvent(app,
+			APIGitification.postEvent(app,
 					DummyFactory.event(user, eventType4));
 		}
 		

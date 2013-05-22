@@ -59,6 +59,14 @@ public class APIGitification {
 		log.debug(responseBody);
 	}
 	
+	public static void getUsers(Application app)
+			throws ClientProtocolException, IOException {
+		log.debug("**** GET USERS ******");
+		String responseBody = HTTPRequester.get(baseURL + "applications/"
+				+ app.getApplication_id() + "/users");
+		log.debug(responseBody);
+	}
+	
 	public static List<Badge> getUserBadges(Application app, User user)
 			throws ClientProtocolException, IOException {
 		log.debug("**** GET USER ******");

@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.mse.osf.gitification.benchmark.Benchmark;
 import ch.mse.osf.gitification.benchmark.BenchmarkExecutor;
+import ch.mse.osf.gitification.benchmark.impl.AllUsersBenchmark;
 import ch.mse.osf.gitification.benchmark.impl.CreateEventBenchmark;
 import ch.mse.osf.gitification.benchmark.impl.LeaderBoardBenchmark;
 import ch.mse.osf.gitification.benchmark.impl.UserBadgesBenchmark;
@@ -25,8 +26,9 @@ public class JavaBench {
 	public static void benchs() throws IOException {
 		List<Benchmark> benchs = new ArrayList<Benchmark>();
 		//benchs.add(new CreateEventBenchmark(1000));
-		benchs.add(new LeaderBoardBenchmark(5,5));
+		//benchs.add(new LeaderBoardBenchmark(5,5));
 		//benchs.add(new UserBadgesBenchmark(10));
+		benchs.add(new AllUsersBenchmark(10));
 		BenchmarkExecutor.execute(benchs);
 	}
 }
