@@ -29,7 +29,7 @@ public class BadgeAwardValidator {
 	public static void validateBadgeAward() throws ClientProtocolException,
 			IOException, Exception {
 		log.info("Validating badge award system (long process)");
-		for (int j = 1; j < 5; j++) {
+		for (int j = 1; j < 3; j++) {
 			valideBadgeAward();
 		}
 		log.info("Badge award system seems to work");

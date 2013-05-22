@@ -1,6 +1,9 @@
 package ch.mse.osf.gitification.benchmark.impl;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -16,8 +19,10 @@ public class CreateEventBenchmark extends Benchmark {
 
 	private int nbEvents = 0;
 
-	public CreateEventBenchmark(int nbEvents) {
-		this.nbEvents = nbEvents;
+
+	public CreateEventBenchmark(int nbEvents) throws IOException {
+		super();
+		this.nbEvents = nbEvents;	
 	}
 
 	@Override
@@ -34,10 +39,15 @@ public class CreateEventBenchmark extends Benchmark {
 
 		APIGitification.postRule(app, DummyFactory.rule(badge, eventType, 6));
 
+		long start, end;
 		for (int i = 0; i < nbEvents; i++) {
+			start = System.nanoTime();
 			APIGitification.postEvent(app, DummyFactory.event(user, eventType));
+			end = System.nanoTime();
+			out.println(i + "," + (end - start));
 		}
-
+		out.flush();
+		out.close();
 	}
 
 }
