@@ -1,7 +1,7 @@
 gitification-javabench
 ======================
 
-Java application to benchmark gitification-server.
+Gitification's project benchmark client.
 This software is for experimental usage only.
 
 ## Getting started
